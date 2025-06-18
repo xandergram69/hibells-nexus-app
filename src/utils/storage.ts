@@ -1,31 +1,39 @@
 
-import { Storage } from '@capacitor/storage';
+import { Preferences } from '@capacitor/preferences';
 
-export const saveData = async (key: string, value: any) => {
+export const setItem = async (key: string, value: string) => {
   try {
-    await Storage.set({
+    await Preferences.set({
       key,
-      value: JSON.stringify(value)
+      value,
     });
   } catch (error) {
-    console.error('Error saving data:', error);
+    console.error('Error storing data:', error);
   }
 };
 
-export const getData = async (key: string) => {
+export const getItem = async (key: string): Promise<string | null> => {
   try {
-    const result = await Storage.get({ key });
-    return result.value ? JSON.parse(result.value) : null;
+    const { value } = await Preferences.get({ key });
+    return value;
   } catch (error) {
-    console.error('Error getting data:', error);
+    console.error('Error retrieving data:', error);
     return null;
   }
 };
 
-export const removeData = async (key: string) => {
+export const removeItem = async (key: string) => {
   try {
-    await Storage.remove({ key });
+    await Preferences.remove({ key });
   } catch (error) {
     console.error('Error removing data:', error);
+  }
+};
+
+export const clear = async () => {
+  try {
+    await Preferences.clear();
+  } catch (error) {
+    console.error('Error clearing storage:', error);
   }
 };
