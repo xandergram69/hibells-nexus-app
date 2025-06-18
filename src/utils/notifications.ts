@@ -31,3 +31,34 @@ export const requestNotificationPermissions = async () => {
     return false;
   }
 };
+
+export const scheduleAcademicReminders = async () => {
+  try {
+    const hasPermission = await requestNotificationPermissions();
+    if (!hasPermission) return false;
+
+    // Schedule some example academic reminders
+    const now = new Date();
+    
+    // Course registration deadline reminder
+    const registrationDeadline = new Date(now.getTime() + (24 * 60 * 60 * 1000)); // 1 day from now
+    await scheduleNotification(
+      '📚 Course Registration Reminder',
+      'Course registration deadline is approaching! Only 5 days left.',
+      registrationDeadline
+    );
+
+    // Exam reminder
+    const examReminder = new Date(now.getTime() + (2 * 24 * 60 * 60 * 1000)); // 2 days from now
+    await scheduleNotification(
+      '📝 Upcoming Exam',
+      'Computer Science 301 exam is in 3 days. Time to prepare!',
+      examReminder
+    );
+
+    return true;
+  } catch (error) {
+    console.error('Error scheduling academic reminders:', error);
+    return false;
+  }
+};
