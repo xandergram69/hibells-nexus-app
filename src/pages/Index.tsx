@@ -35,10 +35,12 @@ const Index = () => {
         );
       case 'portal':
         return (
-          <WebView 
-            url="https://www.bellsuniversity.edu.ng"
-            className="h-full"
-          />
+          <div className="h-full w-full">
+            <WebView 
+              url="https://www.bellsuniversity.edu.ng"
+              className="h-full w-full"
+            />
+          </div>
         );
       case 'assistant':
         return <StudentAssistant />;
@@ -56,10 +58,12 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      {/* Main content area */}
-      <div className="flex-1 pb-16 overflow-hidden">
-        {renderActiveTab()}
+    <div className="min-h-screen bg-gray-50 flex flex-col overflow-hidden">
+      {/* Main content area with proper mobile handling */}
+      <div className="flex-1 pb-16 overflow-hidden relative">
+        <div className="h-full w-full">
+          {renderActiveTab()}
+        </div>
       </div>
       
       {/* Bottom Navigation */}

@@ -56,43 +56,50 @@ const WebView: React.FC<WebViewProps> = ({ url, className = '' }) => {
   };
 
   return (
-    <div className={`relative w-full h-full ${className}`}>
+    <div className={`relative w-full h-full overflow-hidden ${className}`}>
       {/* Loading indicator */}
       {isLoading && (
         <div className="absolute inset-0 bg-white flex items-center justify-center z-10">
           <div className="flex flex-col items-center">
-            <RefreshCw className="animate-spin h-8 w-8 text-blue-600 mb-2" />
-            <p className="text-gray-600">Loading...</p>
+            <RefreshCw className="animate-spin h-6 w-6 md:h-8 md:w-8 text-blue-600 mb-2" />
+            <p className="text-gray-600 text-sm md:text-base">Loading...</p>
           </div>
         </div>
       )}
 
       {/* Network status indicator */}
-      <div className="absolute top-2 right-2 z-20">
+      <div className="absolute top-1 right-1 md:top-2 md:right-2 z-20">
         {isOnline ? (
-          <Wifi className="h-5 w-5 text-green-500" />
+          <Wifi className="h-4 w-4 md:h-5 md:w-5 text-green-500" />
         ) : (
-          <WifiOff className="h-5 w-5 text-red-500" />
+          <WifiOff className="h-4 w-4 md:h-5 md:w-5 text-red-500" />
         )}
       </div>
 
       {/* Refresh button */}
       <button
         onClick={handleRefresh}
-        className="absolute top-2 left-2 z-20 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow"
+        className="absolute top-1 left-1 md:top-2 md:left-2 z-20 bg-white rounded-full p-1.5 md:p-2 shadow-md hover:shadow-lg transition-shadow"
       >
-        <RefreshCw className="h-4 w-4 text-gray-600" />
+        <RefreshCw className="h-3 w-3 md:h-4 md:w-4 text-gray-600" />
       </button>
 
-      {/* WebView iframe */}
+      {/* WebView iframe with mobile optimizations */}
       <iframe
         ref={iframeRef}
         src={currentUrl}
-        className="w-full h-full border-0 rounded-lg"
+        className="w-full h-full border-0 rounded-none md:rounded-lg bg-white"
         onLoad={handleLoad}
         onError={handleError}
         title="Bells University Portal"
-        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-navigation"
+        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-navigation allow-downloads"
+        style={{
+          minHeight: '100%',
+          width: '100%',
+          transform: 'scale(1)',
+          transformOrigin: '0 0'
+        }}
+        allowFullScreen
       />
     </div>
   );
