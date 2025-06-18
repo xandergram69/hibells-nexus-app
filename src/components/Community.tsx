@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { MessageCircle, Users, Calendar, Trophy, Plus, Heart, MessageSquare } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -28,8 +27,8 @@ const Community: React.FC = () => {
   const [posts] = useState<CommunityPost[]>([
     {
       id: '1',
-      author: 'John Doe',
-      avatar: 'JD',
+      author: 'Adebayo Olumide',
+      avatar: 'AO',
       content: 'Great lecture on AI algorithms today! Prof. Smith really knows how to explain complex concepts. Anyone else excited about the upcoming machine learning project?',
       timestamp: '2 hours ago',
       likes: 12,
@@ -38,9 +37,9 @@ const Community: React.FC = () => {
     },
     {
       id: '2',
-      author: 'Sarah Johnson',
-      avatar: 'SJ',
-      content: 'Looking for study partners for the upcoming calculus exam. Let\'s form a study group! Who\'s interested?',
+      author: 'Chioma Nwankwo',
+      avatar: 'CN',
+      content: "Looking for study partners for the upcoming calculus exam. Let's form a study group! Who's interested?",
       timestamp: '4 hours ago',
       likes: 8,
       comments: 3,
@@ -48,8 +47,8 @@ const Community: React.FC = () => {
     },
     {
       id: '3',
-      author: 'Mike Chen',
-      avatar: 'MC',
+      author: 'Ibrahim Aliyu',
+      avatar: 'IA',
       content: 'The new cafeteria menu is amazing! Finally some variety in our meal options. The grilled chicken is particularly good.',
       timestamp: '1 day ago',
       likes: 15,
