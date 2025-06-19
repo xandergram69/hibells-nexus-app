@@ -18,7 +18,7 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, onTabCha
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-lg z-50">
       <div className="safe-area-pb">
         <div className="flex justify-around items-center px-2 py-2">
           {tabs.map((tab) => {
@@ -30,34 +30,43 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, onTabCha
                 key={tab.id}
                 onClick={() => onTabChange(tab.id)}
                 className={cn(
-                  "flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all duration-200 min-w-0 flex-1 max-w-[72px]",
+                  "flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all duration-300 min-w-0 flex-1 max-w-[72px] group",
+                  "hover:scale-105 active:scale-95",
                   isActive 
-                    ? "text-blue-600 bg-blue-50 scale-105 shadow-sm" 
+                    ? "text-blue-600 bg-blue-50 scale-105 shadow-sm animate-scale-in" 
                     : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
                 )}
               >
                 <div className={cn(
-                  "relative mb-1 transition-transform duration-200",
-                  isActive && "scale-110"
+                  "relative mb-1 transition-all duration-300",
+                  isActive && "scale-110 animate-fade-in",
+                  "group-hover:scale-110"
                 )}>
                   <Icon 
                     size={22} 
                     className={cn(
-                      "transition-colors duration-200",
-                      isActive ? "text-blue-600" : "text-gray-500"
+                      "transition-all duration-300",
+                      isActive ? "text-blue-600 drop-shadow-sm" : "text-gray-500",
+                      "group-hover:text-blue-500"
                     )}
                   />
-                  {/* Active indicator dot */}
+                  {/* Active indicator dot with pulse */}
                   {isActive && (
-                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-600 rounded-full"></div>
+                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
                   )}
                 </div>
                 <span className={cn(
-                  "text-xs font-medium transition-colors duration-200 truncate",
-                  isActive ? "text-blue-600" : "text-gray-500"
+                  "text-xs font-medium transition-all duration-300 truncate",
+                  isActive ? "text-blue-600 font-semibold" : "text-gray-500",
+                  "group-hover:text-blue-500"
                 )}>
                   {tab.label}
                 </span>
+                
+                {/* Ripple effect for active tab */}
+                {isActive && (
+                  <div className="absolute inset-0 rounded-xl bg-blue-100 opacity-20 animate-ping"></div>
+                )}
               </button>
             );
           })}
