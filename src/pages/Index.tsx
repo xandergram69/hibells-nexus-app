@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import BottomNavigation from '@/components/BottomNavigation';
 import WebView from '@/components/WebView';
@@ -74,7 +73,7 @@ const Index = () => {
           );
         case 'portal':
           return (
-            <div className="h-full w-full bg-white">
+            <div className="h-full w-full">
               <WebView 
                 url="https://www.bellsuniversity.edu.ng"
                 className="h-full w-full"
@@ -114,7 +113,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col overflow-hidden">
       {/* Main content area with proper mobile handling */}
-      <div className="flex-1 pb-16 overflow-hidden relative">
+      <div className={`flex-1 overflow-hidden relative ${activeTab === 'portal' ? 'pb-16' : 'pb-16'}`}>
         <div className="h-full w-full">
           {renderActiveTab()}
         </div>
