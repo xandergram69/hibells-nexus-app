@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect, useState } from 'react';
-import { RefreshCw, Wifi, WifiOff, Download, ArrowLeft, MoreVertical } from 'lucide-react';
+import { RefreshCw, Wifi, WifiOff, Download, MoreVertical } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import {
@@ -96,8 +96,8 @@ const WebView: React.FC<WebViewProps> = ({ url, className = '' }) => {
   };
 
   return (
-    <div className={`relative w-full h-full overflow-hidden bg-white ${className}`}>
-      {/* Floating Action Menu - Only visible when needed */}
+    <div className={`fixed inset-0 w-screen h-screen overflow-hidden bg-white ${className}`}>
+      {/* Floating Action Menu */}
       <div className="absolute top-4 right-4 z-50">
         <DropdownMenu open={showMenu} onOpenChange={setShowMenu}>
           <DropdownMenuTrigger asChild>
@@ -149,6 +149,7 @@ const WebView: React.FC<WebViewProps> = ({ url, className = '' }) => {
         ref={iframeRef}
         src={currentUrl}
         className="w-full h-full border-0 bg-white"
+        style={{ width: '100vw', height: '100vh' }}
         onLoad={handleLoad}
         onError={handleError}
         title="Bells University Portal"
