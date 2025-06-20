@@ -98,7 +98,7 @@ const Index = () => {
         isTransitioning 
           ? 'opacity-0 transform scale-95' 
           : 'opacity-100 transform scale-100'
-      } ${activeTab === 'portal' ? 'fixed inset-0 z-40' : ''}`}>
+      } ${activeTab === 'portal' ? 'fixed inset-0 z-40 pb-16' : ''}`}>
         {tabContent}
       </div>
     );
@@ -111,31 +111,17 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col overflow-hidden">
       {/* Main content area with proper mobile handling */}
-      <div className={`flex-1 overflow-hidden relative ${activeTab === 'portal' ? '' : 'pb-16'}`}>
+      <div className="flex-1 overflow-hidden relative pb-16">
         <div className="h-full w-full">
           {renderActiveTab()}
         </div>
       </div>
       
-      {/* Bottom Navigation - Hide when Portal is active */}
-      {activeTab !== 'portal' && (
-        <BottomNavigation 
-          activeTab={activeTab} 
-          onTabChange={handleTabChange} 
-        />
-      )}
-      
-      {/* Floating Bottom Navigation for Portal */}
-      {activeTab === 'portal' && (
-        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50">
-          <div className="bg-white/90 backdrop-blur-lg rounded-full px-2 py-1 shadow-lg border border-gray-200">
-            <BottomNavigation 
-              activeTab={activeTab} 
-              onTabChange={handleTabChange} 
-            />
-          </div>
-        </div>
-      )}
+      {/* Bottom Navigation - Always visible */}
+      <BottomNavigation 
+        activeTab={activeTab} 
+        onTabChange={handleTabChange} 
+      />
     </div>
   );
 };

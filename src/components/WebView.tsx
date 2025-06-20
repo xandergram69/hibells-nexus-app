@@ -1,4 +1,5 @@
 
+
 import React, { useRef, useEffect, useState } from 'react';
 import { RefreshCw, Wifi, WifiOff, Download, MoreVertical } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -96,7 +97,7 @@ const WebView: React.FC<WebViewProps> = ({ url, className = '' }) => {
   };
 
   return (
-    <div className={`fixed inset-0 w-screen h-screen overflow-hidden bg-white ${className}`}>
+    <div className={`absolute inset-0 w-full h-full overflow-hidden bg-white ${className}`}>
       {/* Floating Action Menu */}
       <div className="absolute top-4 right-4 z-50">
         <DropdownMenu open={showMenu} onOpenChange={setShowMenu}>
@@ -149,7 +150,7 @@ const WebView: React.FC<WebViewProps> = ({ url, className = '' }) => {
         ref={iframeRef}
         src={currentUrl}
         className="w-full h-full border-0 bg-white"
-        style={{ width: '100vw', height: '100vh' }}
+        style={{ width: '100%', height: '100%' }}
         onLoad={handleLoad}
         onError={handleError}
         title="Bells University Portal"
